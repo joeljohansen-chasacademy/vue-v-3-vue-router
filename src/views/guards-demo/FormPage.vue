@@ -2,12 +2,12 @@
 import { onBeforeRouteLeave } from "vue-router";
 import { ref } from "vue";
 
-const isDirty = ref(true);
+const hasChanges = ref(true);
 
 // In-component guard
 // Körs när vi är på väg att lämna denna komponent
 onBeforeRouteLeave((to, from, next) => {
-	if (isDirty.value) {
+	if (hasChanges.value) {
 		const answer = window.confirm(
 			"Du har osparade ändringar. Vill du verkligen lämna?"
 		);
@@ -27,7 +27,7 @@ onBeforeRouteLeave((to, from, next) => {
 	<p>Försök navigera härifrån utan att spara (klicka på en länk).</p>
 
 	<label>
-		<input type="checkbox" v-model="isDirty" />
+		<input type="checkbox" v-model="hasChanges" />
 		Har osparade ändringar
 	</label>
 </template>
