@@ -8,7 +8,7 @@
 		<nav>
 			<!-- Demo 1: Basic Routing -->
 			<RouterLink to="/">Home</RouterLink>
-			<RouterLink to="/about">About</RouterLink>
+			<RouterLink :to="{ name: 'about' }">About</RouterLink>
 			<RouterLink to="/contact">Contact</RouterLink>
 
 			<!-- Demo 2: Dynamic Routes -->

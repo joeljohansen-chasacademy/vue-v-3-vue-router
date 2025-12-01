@@ -11,17 +11,17 @@ const routes = [
 	// --- Demo 1: Basic Routing ---
 	{
 		path: "/",
-		name: "Home",
+		name: "home",
 		component: Home,
 	},
 	{
 		path: "/about",
-		name: "About",
+		name: "about",
 		component: About,
 	},
 	{
 		path: "/contact",
-		name: "Contact",
+		name: "contact",
 		component: Contact,
 	},
 
@@ -30,18 +30,18 @@ const routes = [
 	// Komponenterna ligger i 'dynamic-routes'-mappen
 	{
 		path: "/products",
-		name: "ProductList",
+		name: "product-list",
 		component: () => import("../views/dynamic-routes/ProductList.vue"),
 	},
 	{
 		// :id är en dynamisk parameter
 		path: "/product/:id",
-		name: "ProductDetail",
+		name: "product-detail",
 		component: () => import("../views/dynamic-routes/ProductDetail.vue"),
 	},
 	{
 		path: "/search",
-		name: "Search",
+		name: "search",
 		component: () => import("../views/dynamic-routes/SearchPage.vue"),
 	},
 
@@ -59,17 +59,17 @@ const routes = [
 			},
 			{
 				path: "overview", // Obs: ingen / i början på children paths
-				name: "DashboardOverview",
+				name: "dashboard-overview",
 				component: () => import("../views/nested-routes/Overview.vue"),
 			},
 			{
 				path: "users",
-				name: "DashboardUsers",
+				name: "dashboard-users",
 				component: () => import("../views/nested-routes/Users.vue"),
 			},
 			{
 				path: "settings",
-				name: "DashboardSettings",
+				name: "dashboard-settings",
 				component: () => import("../views/nested-routes/Settings.vue"),
 			},
 		],
@@ -114,24 +114,24 @@ const routes = [
 	// --- Demo 5: Guards ---
 	{
 		path: "/guards/home",
-		name: "GuardsHome",
+		name: "guards-home",
 		component: () => import("../views/guards-demo/Home.vue"),
 	},
 	{
 		path: "/guards/login",
-		name: "GuardsLogin",
+		name: "guards-login",
 		component: () => import("../views/guards-demo/Login.vue"),
 	},
 	{
 		path: "/guards/dashboard",
-		name: "GuardsDashboard",
+		name: "guards-dashboard",
 		component: () => import("../views/guards-demo/Dashboard.vue"),
 		// Meta-fält kan användas för att skicka extra info till guards
 		meta: { requiresAuth: true },
 	},
 	{
 		path: "/guards/admin",
-		name: "GuardsAdmin",
+		name: "guards-admin",
 		component: () => import("../views/guards-demo/Admin.vue"),
 		// Per-route guard
 		beforeEnter: (to, from, next) => {
@@ -147,7 +147,7 @@ const routes = [
 	},
 	{
 		path: "/guards/form",
-		name: "GuardsForm",
+		name: "guards-form",
 		component: () => import("../views/guards-demo/FormPage.vue"),
 	},
 ];
