@@ -6,18 +6,20 @@ const hasChanges = ref(true);
 
 // In-component guard
 // Körs när vi är på väg att lämna denna komponent
-onBeforeRouteLeave((to, from, next) => {
+onBeforeRouteLeave((to, from) => {
 	if (hasChanges.value) {
 		const answer = window.confirm(
 			"Du har osparade ändringar. Vill du verkligen lämna?"
 		);
 		if (answer) {
-			next(); // Tillåt navigation
+			return true;
+			//next(); // Tillåt navigation (äldre sättet att skriva, alltså next())
 		} else {
-			next(false); // Avbryt navigation
+			return false;
+			//next(false); // Avbryt navigation
 		}
 	} else {
-		next(); // Inga ändringar, bara kör
+		return true; // Inga ändringar
 	}
 });
 </script>

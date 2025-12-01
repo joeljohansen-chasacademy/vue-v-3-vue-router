@@ -134,14 +134,14 @@ const routes = [
 		name: "guards-admin",
 		component: () => import("../views/guards-demo/Admin.vue"),
 		// Per-route guard
-		beforeEnter: (to, from, next) => {
+		beforeEnter: (to, from) => {
 			// Simulera en roll-check
 			const role = "admin"; // Ändra till 'user' för att testa blockering
 			if (role === "admin") {
-				next();
+				return true;
 			} else {
 				alert("Du har inte behörighet!");
-				next(false); // Avbryt navigation
+				return false; // Avbryt navigation
 			}
 		},
 	},
@@ -159,21 +159,21 @@ const router = createRouter({
 
 // Global Guard
 // Körs inför VARJE navigation
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from) => {
 	// Kolla om routen vi är på väg till kräver inloggning
 	if (to.meta.requiresAuth) {
 		const token = localStorage.getItem("token");
 
 		if (token) {
 			// Har token -> släpp igenom
-			next();
+			return true;
 		} else {
 			// Ingen token -> redirect till login
-			next("/guards/login");
+			return { name: "guards-login" };
 		}
 	} else {
 		// Kräver inte inloggning -> släpp igenom
-		next();
+		return true;
 	}
 });
 
